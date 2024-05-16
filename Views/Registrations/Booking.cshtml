@@ -1,0 +1,55 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model List<Registration> 
+@{
+    <h1 style="text-align: center;">@ViewData["Title"]</h1>
+
+}
+
+<h2 style="text-align: center;">@ViewData["Title"]</h2>
+<h3 style="text-align: center; font-style: italic; margin-top: 20px;">Total Bookings: @ViewBag.TotalCount</h3>
+<div class="center-text">
+    <a href="@Url.Action("Index", "Events")" style="display: inline-block; padding: 8px 16px; margin: 10px 0; background-color: white; color: blue; text-decoration: none; text-align: center; border: 1px solid blue; border-radius: 5px;">Back to List</a>
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+           <th>Phone</th>
+           <th>Current Status</th>
+           <th>Change Status</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach(var booking in Model) {
+    <tr>
+        <td>@booking.RegistrationName</td> 
+        <td>@booking.User.Email</td> 
+        <td>@booking.PhoneNumber</td>
+        <td>@booking.Status</td>
+                <td>
+                    <form method="post" asp-action="UpdateStatus" asp-controller="Registrations">
+                        <select name="status" class="form-select">
+                            @foreach (var status in Enum.GetValues(typeof(RegistrationStatus)))
+                            {
+                                <option value="@status">@status</option>
+                            }
+                        </select>
+                        <input type="hidden" name="registrationId" value="@booking.Id" />
+                        <button type="submit" class="btn btn-primary">Change Status</button>
+
+                    </form>
+
+                </td>
+    </tr>
+
+}
+    </tbody>
+</table>

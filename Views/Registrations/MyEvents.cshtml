@@ -1,0 +1,45 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<Event>  
+
+<h1>Events Registered by You</h1>
+
+@if (Model.Count == 0)
+{
+    <p>No events registered.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Event Name</th>
+                <th>Date</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var registeredEvents in Model)
+            {
+                <tr>
+                    <td>@registeredEvents.Name</td>
+                    <td>@registeredEvents.Date.ToShortDateString()</td>
+                    <td>
+                        <form method="post" asp-action="ConfirmCancel" asp-controller="Registrations">
+                            <input type="hidden" name="eventId" value="@registeredEvents.Id" />
+                            <button type="submit" class="btn btn-danger">Cancel Registration</button>
+                        </form>
+                </tr>
+            }
+            @if (TempData["Message"] != null)
+            {
+                <script>
+                    alert("@TempData["Message"]");
+                </script>
+            }
+        </tbody>
+    </table>
+}

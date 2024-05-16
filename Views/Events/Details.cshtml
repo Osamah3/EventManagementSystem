@@ -1,0 +1,77 @@
+﻿@model Trion.Models.Event
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+@if (User.IsInRole("Admin"))
+{
+    
+
+<div>
+    <h4>Event</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.EventDescription)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.EventDescription)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+        <a asp-controller="Registrations" asp-action="Booking" asp-route-eventId="@Model?.Id" class="btn btn-primary">Bookings</a>
+    <a asp-action="Index">Back to List</a>
+    </div>
+}
+else
+{
+    <div>
+        <h4>Event</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Name)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Name)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Date)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Date)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.EventDescription)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.EventDescription)
+            </dd>
+        </dl>
+    </div>
+
+    <!-- Add a button for booking a ticket -->
+    <div>
+        <a asp-action="Index">Back to List</a>
+        <!-- Button for booking a ticket -->
+        <a asp-controller="Registrations" asp-action="BookTicket" asp-route-eventId="@Model.Id" class="btn btn-primary">Book Ticket</a>
+
+    </div>
+    
+}

@@ -1,0 +1,40 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<form asp-controller="Registrations" asp-action="BookTicket" method="post">
+    <div class="form-group">
+        <label for="RegistrationName">Your Name:</label>
+        <input type="text" class="form-control" id="RegistrationName" name="RegistrationName" placeholder="Enter your name" required>
+    </div>
+    <div class="form-group">
+        <label for="PhoneNumber">Phone Number:</label>
+        <input type="tel" class="form-control" id="PhoneNumber" name="PhoneNumber" placeholder="Enter your phone number" required>
+    </div>
+    <input type="hidden" name="EventId" value="@Model.EventId">
+    <button type="submit" class="btn btn-primary">Book Ticket</button>
+</form>
+
+@if (ViewBag.SuccessMessage != null)
+{
+    <script>
+        alert("@ViewBag.SuccessMessage");
+        setTimeout(function () {
+            window.location.href = '@Url.Action("Index", "Events")';
+        }, 100);
+    </script>
+
+
+}
+else if(ViewBag.ErrorMessage != null)
+{
+    <script>
+        alert("@ViewBag.ErrorMessage");
+        setTimeout(function () {
+            window.location.href = '@Url.Action("Index", "Events")';
+        }, 100);
+    </script>
+    
+}

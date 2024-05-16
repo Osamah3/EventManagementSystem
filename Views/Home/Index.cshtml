@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@* 
+*@
+@if(User.IsInRole("Admin")){
+    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center" style="background-image: url('background.jpg'); background-size: cover; background-position: center;">
+        <div class="col-md-5 p-lg-5 mx-auto my-5">
+            <h1 class="display-4 font-weight-normal">Plan, Design, Celebrate</h1>
+            <p class="lead font-weight-normal">Streamline your event planning process with Eventify, the all-in-one solution for creating memorable experiences.</p>
+            <a class="btn btn-outline-secondary" href="https://localhost:44304/Events">Manage</a>
+        </div>
+        <div class="product-device box-shadow d-none d-md-block"></div>
+        <div class="product-device product-device-2 box-shadow d-none d-md-block"></div>
+    </div>
+
+}
+else
+{
+    <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center" style="background-image: url('background.jpg'); background-size: cover; background-position: center;">
+        <div class="col-md-5 p-lg-5 mx-auto my-5">
+            <h1 class="display-4 font-weight-normal">Plan, Design, Celebrate</h1>
+            <p class="lead font-weight-normal">Streamline your event planning process with Eventify, the all-in-one solution for creating memorable experiences.</p>
+            <a class="btn btn-outline-secondary" href="https://localhost:44304/Events">Explore</a>
+        </div>
+        <div class="product-device box-shadow d-none d-md-block"></div>
+        <div class="product-device product-device-2 box-shadow d-none d-md-block"></div>
+    </div>
+}
+
+
+   
